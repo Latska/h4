@@ -73,7 +73,9 @@ Apache User Homepages Automatically – Salt Package-File-Service Example
 * Tarjoaa hyvän yleiskatsauksen Saltin arkkitehtuurista ja komponenteista
 * Yksi tapa kuvailla Saltia on julkaisija-tilaaja -malli, jossa master julkaisee suoritettavat työt ja minionit tilaavat nämä työt.
 – Kun tietty työ koskee tiettyä minionia, se suorittaa työn.
-** a) Oletussivu. Vaihda Apachen oletussivu päällekirjoittamalla /var/ww/html/index.html . Voit käyttää pohjana tunnilla tekemääsi Apache-asennusta.
+
+**a) Oletussivu. Vaihda Apachen oletussivu päällekirjoittamalla /var/ww/html/index.html . Voit käyttää pohjana tunnilla tekemääsi Apache-asennusta.**
+
 Apache:n olin jo ehtinyt asentaa koneelleni komennolla:
 $ sudo apt-get install apache2
 
