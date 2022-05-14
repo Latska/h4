@@ -76,23 +76,152 @@ Apache User Homepages Automatically – Salt Package-File-Service Example
 
 **a) Oletussivu. Vaihda Apachen oletussivu päällekirjoittamalla /var/ww/html/index.html . Voit käyttää pohjana tunnilla tekemääsi Apache-asennusta.**
 
-Apache:n olin jo ehtinyt asentaa koneelleni komennolla:
-$ sudo apt-get install apache2
+Aloitetaan tehtävä asentamalla Spache virtuaalikoneelle:
+
+>$ sudo apt-get install apache2
+
+Sekä kokeillaan curl-komennolla, näkyykö localhostissa mitään:
+
+>$ curl localhost
+>curl: (7) Failed to connect to localhost port 80: Connection refused
+
+
+Eipä näkynyt, potkaistaan Spache uuusiksi käyntiin ja katsotaan uusiksi:
+>$ sudo systemctl restart apache2
 
 
 
-TEKNISIÄ ONGELMIA — KESKEN
+Nyt toimii.
 
-(TÄYDENNETÄÄN KESKIVIIKKONA 13.4.)
+![image](https://user-images.githubusercontent.com/103587811/168430709-56e1a912-ef75-43e8-ae34-6de74d674af5.png)
+
+
+Apachen oletussivun muuttamiseksi käytin seuraavaa Teron ohjetta: 
+
+https://terokarvinen.com/2016/new-default-website-with-apache2-show-your-homepage-at-top-of-example-com-no-tilde/?fromSearch=
+
+Aloitetaan tekemällä uusi virtuaalihost 'sivu.conf'
+>$ sudoedit /etc/apache2/sites-available/sivu.conf
+
+Lisätään sinne seuraava:
+
+![image](https://user-images.githubusercontent.com/103587811/168434559-56aa43bd-7966-4a5f-bfd0-3941998e1fae.png)
+
+Otetaan default sivu pois päältä ja laitetaan omat sivut toimintaan,
+/sites-enabled/ hakemistossa ajetaan seuraavat komennot:
+
+>$ sudo a2ensite tero.conf
+>$ sudo a2dissite 000-default.conf
+
+
+
+![image](https://user-images.githubusercontent.com/103587811/168434756-d9fef585-a2e5-4aa1-956b-9cc24561bec2.png)
+
+Ja potkaistaan Apache vielä uusiks käyntiin, jotta muutokset tulevat voimaan
+
+Oleellisin, eli varsinaiset sivut vielä puuttuvat: tehdään uusi kansio kotihakemistoon:
+
+>$ mkdir public_html/
+
+>lauri@latska:~$ cd public_html/
+
+>lauri@latska:~/public_html$ pwd
+
+>/home/lauri/public_html
+
+Tehdään kansioon uusi html page:
+>lauri@latska:~/public_html$ micro index.html
+
+![image](https://user-images.githubusercontent.com/103587811/168437595-a2c26569-debf-45fa-89e9-5a75f1ad5d87.png)
+
+
+>lauri@latska:~/public_html$ ls
+
+>index.html
+
+Ja kokeillaan 'curl localhost' -komennolla:
+
+>lauri@latska:~/public_html$ curl localhost
+
+>Testi ;')
+
+Näyttäisi toimivan, mutta ihmetellään vielä selaimen kautta:
+
+![image](https://user-images.githubusercontent.com/103587811/168438626-2f9b8554-1c4c-409e-8404-f0701f9d1875.png)
+
+Alles goed
+
+
+
+
+
+
+
 
 **b) Tri Kaaaos. Aiheuta erilaisia vikatilanteita ja osoita, kuinka Apache-tilasi korjaa ne. Voit esimerksi sulkea demonin (sudo systemctl stop foobar), poistaa asetukset tai poistaa apachen paketit. Osoita yksinkertaisin testein, saat palvelun toimimattomaksi, ja salt-tilasi saa sen jälleen toimimaan.**
 
+Tähän tehtävään otin apuja Teron ohjeesta:
+https://terokarvinen.com//2018/apache-user-homepages-automatically-salt-package-file-service-example/
 
-TEKNISIÄ ONGELMIA — KESKEN
+Tehdään apachelle hakemisto saltin juureen:
 
-(TÄYDENNETÄÄN KESKIVIIKKONA 13.4.)
+>$ sudo mkdir /srv/salt/apache
 
-** c) Shh! Asenna ja konfiguroi SSH-demoni. Laita se porttiin 7373.
+Ja lisätään sinne uusi init.sls tilatiedosto:
+
+>$ sudo micro init.sls
+
+![image](https://user-images.githubusercontent.com/103587811/168439837-85bd663e-ad3d-427c-91d1-2f0ed6aa9a37.png)
+
+Testataan toimiiko uusi tilafunktio:
+
+>$ sudo salt '*' state.apply apache
+
+![image](https://user-images.githubusercontent.com/103587811/168439878-3c55ae93-a2a0-4e7a-a99f-33723c5aa67b.png)
+
+Näyttää toimivan - se korvaa edellisessä tehtävässä luodun index.html:n Saltin hakemistossa olevalla. Paketteihin ja conffeihin ei muutoksia. Testataan vielä vielä uusiksi, että onko idempotentti + varmistus curlilla:
+
+>$ sudo salt '*' state.apply apache
+
+>$ curl localhost
+
+
+
+![image](https://user-images.githubusercontent.com/103587811/168439893-021c1266-8b2e-4eef-ba5a-9b6c42f13b7d.png)
+
+Hyvin tuntuu toimivan. Sitten tuhotöiden kimppuun:
+
+Ensimmäinen testi, kokeillaan käynnistääkö tilafunktio Apachen mikäli sen sammuttaa:
+
+![image](https://user-images.githubusercontent.com/103587811/168440070-ae818c06-6c84-4bf0-bad0-3a856e340370.png)
+
+Toimii.
+
+Koitetaan vielä poistaa koko Apache-demoni koneelta + testataan saadaanko Saltin avulla takasin sekä conffit kuntoon:
+
+>$ sudo apt-get purge apache2
+
+
+![image](https://user-images.githubusercontent.com/103587811/168440307-c5c3b5d7-5926-4e1d-a72b-f3f56944104a.png)
+
+Ja kokeillaan uudelleen asennus Saltilla:
+
+![image](https://user-images.githubusercontent.com/103587811/168440374-1e2715f5-3f3c-48bc-9f08-770c95888187.png)
+
+Sekä testi vielä curlilla:
+
+![image](https://user-images.githubusercontent.com/103587811/168440382-20280fdc-7fbe-4bd3-96bc-9be538a6aa58.png)
+
+Kaikki näyttää toimivan, kuten kuuluu!
+
+
+
+
+
+
+
+
+**c) Shh! Asenna ja konfiguroi SSH-demoni. Laita se porttiin 7373.**
 
 Tähän tehtävään otin apuja Teron Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port -ohjeesta:
 
