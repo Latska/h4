@@ -1,29 +1,29 @@
 # h2 package-file-service
-** z) Lue ja tiivistä, muutama ranskalainen viiva riittää.
+**z) Lue ja tiivistä, muutama ranskalainen viiva riittää.**
 
-** SaltStack Configuration Management: Get Started Tutorial
-* Introduction
-* Functions
-* Files
-– SaltStackin configuration management -järjestelmän avulla voidaan määrittää sovelluksia, tiedostoja ja muita asetuksia specifiin järjestelmään.
-– Järjestelmässä voidaan tehdä konfiguraatioita ja muutoksia tarpeen mukaan.
-– Terminologiaa:
-* Formula – Salt State ja Salt Pillar tiedostoja, jotka määrittelevät sovelluksen tai järjestelmä komponentin.
-* State – Uudestaan käytettävä ilmoitus, joka konffaa tietyn järjestelmän osan. Jokainen state määritellään State Declarationin avulla.
-* State Declaration – State File:n ylin osa, joka listaa State Function kutsut ja argumentit, jotka kaikki muodostavat State:n. Jokainen State Declaration alkaa yksilöllisellä ID:llä.
-* State Functions – Komennot, joilla suoritetaan konfiguraatioita.
-* State File – SLS-tunnisteellinen tiedosto, joka sisältää yhden tai useamman State Declarationin.
-* Pillar File – SLS-tunnisteellinen tiedosto, joka määrittää muuttujat ja datan järjestelmälle.
-– Salt Functionit alkaa komennolla: salt.states.
-– Salt Statet ovat YAML-muodossa:
-* Ensimmäinen rivi Salt Declarationissa on ID
-* ID:n alapuolella voidaan kutsua yhtä tai useampaa Salt State -funktiota
-* ID ja jokainen funktio päättyy kaksoispisteeseen (:) ja jokainen funktiokutsu on sisennetty kahdella välilyönillä tunnuksen alapuolella.
-* Parametrit välitetään luettelona jokaiselle funktiolle, jokainen rivi joka sisältä funktioargumentin, alkaa kahden välilyönnin sisennyksellä, yhdysviivalla ja välilyönnillä.
-* Mikäli argumentilla on yksi arvo, sen nimi ja arvo ovat samalla rivillä erotettuina kaksoispisteellä ja välilyönnillä.
-– Saltin avulla voidaan hallita tiedostoja mallien ja muuttujien avulla
-* salt.states.file – löytää hyvin lisätietoja
-– Esimerkki käyttäjän lisäyksestä Saltilla:
+**SaltStack Configuration Management: Get Started Tutorial**
+  * Introduction
+  * Functions
+  * Files
+  – SaltStackin configuration management -järjestelmän avulla voidaan määrittää sovelluksia, tiedostoja ja muita asetuksia specifiin järjestelmään.
+  – Järjestelmässä voidaan tehdä konfiguraatioita ja muutoksia tarpeen mukaan.
+  – Terminologiaa:
+  * Formula – Salt State ja Salt Pillar tiedostoja, jotka määrittelevät sovelluksen tai järjestelmä komponentin.
+  * State – Uudestaan käytettävä ilmoitus, joka konffaa tietyn järjestelmän osan. Jokainen state määritellään State Declarationin avulla.
+  * State Declaration – State File:n ylin osa, joka listaa State Function kutsut ja argumentit, jotka kaikki muodostavat State:n. Jokainen State Declaration alkaa yksilöllisellä ID:llä.
+  * State Functions – Komennot, joilla suoritetaan konfiguraatioita.
+  * State File – SLS-tunnisteellinen tiedosto, joka sisältää yhden tai useamman State Declarationin.
+  * Pillar File – SLS-tunnisteellinen tiedosto, joka määrittää muuttujat ja datan järjestelmälle.
+  – Salt Functionit alkaa komennolla: salt.states.
+  – Salt Statet ovat YAML-muodossa:
+  * Ensimmäinen rivi Salt Declarationissa on ID
+  * ID:n alapuolella voidaan kutsua yhtä tai useampaa Salt State -funktiota
+  * ID ja jokainen funktio päättyy kaksoispisteeseen (:) ja jokainen funktiokutsu on sisennetty kahdella välilyönillä tunnuksen alapuolella.
+  * Parametrit välitetään luettelona jokaiselle funktiolle, jokainen rivi joka sisältä funktioargumentin, alkaa kahden välilyönnin sisennyksellä, yhdysviivalla ja välilyönnillä.
+  * Mikäli argumentilla on yksi arvo, sen nimi ja arvo ovat samalla rivillä erotettuina kaksoispisteellä ja välilyönnillä.
+  – Saltin avulla voidaan hallita tiedostoja mallien ja muuttujien avulla
+  * salt.states.file – löytää hyvin lisätietoja
+  – Esimerkki käyttäjän lisäyksestä Saltilla:
 
 user account for late:
 user.present:
@@ -35,7 +35,7 @@ user.present:
 
 
 
-** Karvinen 2008: Install Apache Web Server on Ubuntu
+**Karvinen 2008: Install Apache Web Server on Ubuntu**
 
 Apache on avoimeen lähdekoodiin perustuva webbipalvelin Linuxille.
 Tärkeimpiä komentoja:
@@ -83,7 +83,7 @@ TEKNISIÄ ONGELMIA — KESKEN
 
 (TÄYDENNETÄÄN KESKIVIIKKONA 13.4.)
 
-** b) Tri Kaaaos. Aiheuta erilaisia vikatilanteita ja osoita, kuinka Apache-tilasi korjaa ne. Voit esimerksi sulkea demonin (sudo systemctl stop foobar), poistaa asetukset tai poistaa apachen paketit. Osoita yksinkertaisin testein, saat palvelun toimimattomaksi, ja salt-tilasi saa sen jälleen toimimaan.
+**b) Tri Kaaaos. Aiheuta erilaisia vikatilanteita ja osoita, kuinka Apache-tilasi korjaa ne. Voit esimerksi sulkea demonin (sudo systemctl stop foobar), poistaa asetukset tai poistaa apachen paketit. Osoita yksinkertaisin testein, saat palvelun toimimattomaksi, ja salt-tilasi saa sen jälleen toimimaan.**
 
 
 TEKNISIÄ ONGELMIA — KESKEN
@@ -139,7 +139,7 @@ Ja testataan toimiiko SSH-yhteys:
 
 
 
-** m) Vapaaehtoinen: Asenna ja konfiguroi Nginx-weppipalvelin.
+**m) Vapaaehtoinen: Asenna ja konfiguroi Nginx-weppipalvelin.**
 
 Vinkkejä
 
