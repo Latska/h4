@@ -90,36 +90,56 @@ TEKNISIÄ ONGELMIA — KESKEN
 
 (TÄYDENNETÄÄN KESKIVIIKKONA 13.4.)
 
-c) Shh! Asenna ja konfiguroi SSH-demoni. Laita se porttiin 7373.
+** c) Shh! Asenna ja konfiguroi SSH-demoni. Laita se porttiin 7373.
 
 Tähän tehtävään otin apuja Teron Pkg-File-Service – Control Daemons with Salt – Change SSH Server Port -ohjeesta:
 
 Aluksi luodaan SSH:lle oma init.sls ja lisätään sinne seuraavat konfiguraatiot:
 
+![image](https://user-images.githubusercontent.com/103587811/168429057-4d28aee9-350a-4e53-bf95-e1a59cbf2085.png)
+
+
 
 Tämä ei kuitenkaan mennyt orjalle läpi vaan antoi seuraavan virheen:
+
+![image](https://user-images.githubusercontent.com/103587811/168429062-00bdd2b3-a16b-4db7-887c-f3e3c342e372.png)
 
 
 Kommentista se kätevästi selvisikin, sshd_config -tiedostoa ei /srv/salt vielä löytynyt, joten kopioin SSH:n ”alkuperäisen” konffitiedoston ja lisäsin sen kyseiseen hakemistoon:
 
+![image](https://user-images.githubusercontent.com/103587811/168429066-cc9b6034-065e-404d-a2ac-a7daf1cd057e.png)
+
+
 
 Tässä vaiheessa muistui vielä mieleen tehtävän idea, eli vaihtaa SSH:n portti osoitteeseen 7373:
+
+![image](https://user-images.githubusercontent.com/103587811/168429070-e5474a02-2e0b-4674-8152-b7b34ac65859.png)
 
 
 Ja kokeiltiin sshd-tilafunktiota uudelleen:
 
+![image](https://user-images.githubusercontent.com/103587811/168429073-54cf35a6-1e62-4de7-954c-df9a3dec5a47.png)
+
+
 
 Ja vielä:
 
+![image](https://user-images.githubusercontent.com/103587811/168429077-9fd03dea-709b-4bec-b3f3-edb8b78863dd.png)
 
 
 Tulimuuriin reiät:
 
+![image](https://user-images.githubusercontent.com/103587811/168429081-df89cd5a-94e6-4f10-9b65-e7346e2d055c.png)
+
+
 
 Ja testataan toimiiko SSH-yhteys:
 
+![image](https://user-images.githubusercontent.com/103587811/168429087-b9e3ed05-2b38-4b46-b072-3b021abbaab5.png)
 
-m) Vapaaehtoinen: Asenna ja konfiguroi Nginx-weppipalvelin.
+
+
+** m) Vapaaehtoinen: Asenna ja konfiguroi Nginx-weppipalvelin.
 
 Vinkkejä
 
