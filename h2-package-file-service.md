@@ -1,7 +1,7 @@
 # h2 package-file-service
-**z) Lue ja tiivistä, muutama ranskalainen viiva riittää.
+** z) Lue ja tiivistä, muutama ranskalainen viiva riittää.
 
-**SaltStack Configuration Management: Get Started Tutorial
+** SaltStack Configuration Management: Get Started Tutorial
 * Introduction
 * Functions
 * Files
